@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html"  as wtf %}
+{% block title %}
+CU price checker
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post" class="form-inline" novalidate>
+        <p>
+
+            <!--            {{ wtf.quick_form(form) }}-->
+
+            {{ form.csrf_token }}
+            {{ wtf.form_field(form.product_link) }}
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('calc') }}">Order calculator</a>
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+</p>
+</form>
+</div>
+<div class="container-fluid">
+    <table class="table table-bordered table-striped">
+        {{table|safe}}
+    </table>
+</div>
+{% endblock %}

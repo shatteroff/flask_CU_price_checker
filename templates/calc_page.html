@@ -1,0 +1,64 @@
+<!--{% extends "bootstrap/base.html" %}-->
+{% import "bootstrap/wtf.html"  as wtf %}
+{% block title %}
+CU price checker
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post" novalidate>
+        {{ form.csrf_token }}
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <!--            {{ wtf.quick_form(form) }}-->
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.proc.label(class = "control-label")}}
+                        {{form.proc(class = "form-control")}}
+                    </div>
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.mobo.label(class = "control-label")}}
+                        {{form.mobo(class = "form-control")}}
+                    </div>
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.psu.label(class = "control-label")}}
+                        {{form.psu(class = "form-control")}}
+                    </div>
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.memory.label(class = "control-label")}}
+                        {{form.memory(class = "form-control")}}
+                    </div>
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.ssd.label(class = "control-label")}}
+                        {{form.ssd(class = "form-control")}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group col-xs-4 col-md-4">
+                        {{form.submit(class="btn btn-default")}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="form-group col-xs-12 col-md-12">
+                        <table class="table table-bordered table-striped">
+                            {{ message|safe}}
+                        </table>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock %}

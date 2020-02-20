@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CU price checker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+<form action="" method="post">
+    {{ form.csrf_token }}
+    <p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+    </p>
+    <p>
+        {{form.product_link.label}}
+        {{form.product_link}}
+
+        {{form.product_name.label}}
+        {{form.product_name}}
+        {{form.submit(class="btn btn-primary align-top")}}
+    </p>
+</form>
+<table class="table table-bordered table-striped">
+    {{table|safe}}
+</table>
+</body>
+</html>
