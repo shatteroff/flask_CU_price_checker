@@ -73,7 +73,7 @@ class RedisHelper(object):
                 pipe.lrem(self.links_list_name, 0, link)
             # pipe.bgsave()
             pipe.execute()
-            conn.bgsave()
+        # conn.bgsave()
         # conn.close()
 
     def load_prices(self, conn):
@@ -93,8 +93,8 @@ class RedisHelper(object):
                         pipe.hset(self.today_str, product_.name, product_.price)
             # pipe.bgsave()
             pipe.execute()
-            conn.bgsave()
-            # conn.close()
+        # conn.bgsave()
+        # conn.close()
 
     def is_link_exist(self, link, conn):
         # conn = redis.Redis(db=1)
