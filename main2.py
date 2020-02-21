@@ -21,7 +21,7 @@ app.config.from_object(Config)
 csrf = CSRFProtect(app)
 redis_helper = RedisHelper()
 table = Table()
-conn = Config.conn_heroku
+conn = Config.conn
 table.update(conn)
 # conn.close()
 
