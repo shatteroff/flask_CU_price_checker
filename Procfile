@@ -1,2 +1,2 @@
 web: gunicorn wsgi:app
-clock: python update_scheduler.py
+clock: python test_shed.py
