@@ -23,6 +23,8 @@ redis_helper = RedisHelper()
 table = Table()
 conn = Config.conn
 table.update(conn)
+
+
 # conn.close()
 
 
@@ -60,7 +62,7 @@ class CalcForm(FlaskForm):
 
 
 # @scheduler.scheduled_job('interval', minutes=30)
-@scheduler.scheduled_job('cron', hour=Config.hour_for_update)
+@scheduler.scheduled_job('cron', hour=Config.hour_for_update, minute=Config.minute_for_update)
 def update_prices():
     print(datetime.datetime.now())
     conn2 = conn

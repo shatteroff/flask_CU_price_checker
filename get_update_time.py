@@ -1,3 +1,3 @@
 from config import Config
 
-print(Config.hour_for_update)
+print(f'{Config.hour_for_update}:{Config.minute_for_update}')
