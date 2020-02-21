@@ -1,0 +1,6 @@
+/test/
+test_redis.py
+price_dowloader.py
+price_dowloader_to redis.py
+main.py
+clock.py

@@ -22,9 +22,9 @@ def update_prices():
     conn2.close()
 
 
-@scheduler.scheduled_job('interval', minutes=3)
+@scheduler.scheduled_job('interval', minutes=5)
 def timed_job():
-    print('This job is run every three minutes.')
+    print('Test scheduler.\nThis job is run every 5 minutes.')
 
 
 scheduler.start()
