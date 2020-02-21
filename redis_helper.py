@@ -71,8 +71,9 @@ class RedisHelper(object):
                 else:
                     print(f'There was not name tag on {link_str}')
                 pipe.lrem(self.links_list_name, 0, link)
-            pipe.bgsave()
+            # pipe.bgsave()
             pipe.execute()
+            conn.bgsave()
         # conn.close()
 
     def load_prices(self, conn):
@@ -90,8 +91,9 @@ class RedisHelper(object):
                         link = bytes(field).decode("utf-8")
                         product_ = Product(link, name)
                         pipe.hset(self.today_str, product_.name, product_.price)
-            pipe.bgsave()
+            # pipe.bgsave()
             pipe.execute()
+            conn.bgsave()
             # conn.close()
 
     def is_link_exist(self, link, conn):
