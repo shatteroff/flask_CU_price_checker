@@ -69,8 +69,10 @@ def update_prices():
     redis_helper.update_date()
     redis_helper.load_prices(conn2)
     redis_helper.add_product(conn2)
+    print(table)
     table.update(conn2)
     conn2.close()
+    print(table.table_html)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -86,6 +88,8 @@ def index():
             redis_helper.add_to_links_list(link, conn1)
         conn1.close()
         # return redirect('/career')
+        print(table)
+        print(table.table_html)
     return render_template('main_table_page.html', table=table.table_html, form=form)
 
 
