@@ -72,7 +72,6 @@ def update_prices():
     print(table)
     table.update(conn2)
     conn2.close()
-    print(table.table_html)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -89,7 +88,6 @@ def index():
         conn1.close()
         # return redirect('/career')
         print(table)
-        print(table.table_html)
     return render_template('main_table_page.html', table=table.table_html, form=form)
 
 

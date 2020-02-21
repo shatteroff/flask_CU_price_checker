@@ -19,6 +19,11 @@ class Table(object):
         self.table_html = ''
         # self.update()
 
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Table, cls).__new__(cls)
+        return cls.instance
+
     def create_headers_list(self, conn):
         # header_list = ['Date', 'currency']+self.test_header
         header_list = ['Date', 'Currency']
