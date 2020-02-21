@@ -4,7 +4,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 from config import Config
 from redis_helper import RedisHelper
-from table import Table
+from table import main2
 
 scheduler = BlockingScheduler()
 redis_helper = RedisHelper()
