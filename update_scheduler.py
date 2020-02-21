@@ -1,12 +1,12 @@
 import datetime
 
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 from config import Config
 from redis_helper import RedisHelper
 from table import Table
 
-scheduler = BackgroundScheduler()
+scheduler = BlockingScheduler()
 redis_helper = RedisHelper()
 table = Table()
 
