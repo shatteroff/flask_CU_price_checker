@@ -125,4 +125,4 @@ def user_profile(id):
 
 if __name__ == "__main__":
     scheduler.start()
-    app.run(host='0.0.0.0')
+    app.run()
