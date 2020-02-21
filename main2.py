@@ -21,9 +21,9 @@ app.config.from_object(Config)
 csrf = CSRFProtect(app)
 redis_helper = RedisHelper()
 table = Table()
-conn = redis.Redis(db=1)
+conn = Config.conn_heroku
 table.update(conn)
-conn.close()
+# conn.close()
 
 
 class MainForm(FlaskForm):
@@ -49,7 +49,7 @@ class CalcForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super(CalcForm, self).__init__(*args, **kwargs)
-        conn_calc = redis.Redis(db=1)
+        conn_calc = conn
         products_dict = redis_helper.get_products_dict(conn_calc)
         conn_calc.close()
         self.proc.choices = list((x, x) for x in products_dict.get('Processors (CPUs)'))
@@ -63,7 +63,7 @@ class CalcForm(FlaskForm):
 @scheduler.scheduled_job('cron', hour=Config.hour_for_update)
 def update_prices():
     print(datetime.datetime.now())
-    conn2 = redis.Redis(db=1)
+    conn2 = conn
     redis_helper.update_date()
     redis_helper.load_prices(conn2)
     redis_helper.add_product(conn2)
@@ -75,7 +75,7 @@ def update_prices():
 def index():
     form = MainForm()
     if form.validate_on_submit():
-        conn1 = redis.Redis(db=1)
+        conn1 = conn
         link = form.product_link.data
         if redis_helper.is_link_exist(link, conn1):
             flash('This product already exist')
@@ -91,7 +91,7 @@ def index():
 def calc():
     calc_form = CalcForm()
     if calc_form.submit.data:
-        conn = redis.Redis(db=1)
+        # conn = redis.Redis(db=1)
         prices_dict = redis_helper.get_fresh_prices_dict(conn)
         conn.close()
         print('Pressed')
@@ -120,7 +120,7 @@ def feedback():
 
 @app.route('/user/<id>/')
 def user_profile(id):
-    return "Profile page of user #{}".format(id)
+    return "Procfile page of user #{}".format(id)
 
 
 if __name__ == "__main__":
