@@ -22,7 +22,7 @@ csrf = CSRFProtect(app)
 redis_helper = RedisHelper()
 table = Table()
 conn = Config.conn
-table.update(conn)
+# table.update(conn)
 
 
 # conn.close()
@@ -62,20 +62,21 @@ class CalcForm(FlaskForm):
 
 
 # @scheduler.scheduled_job('interval', minutes=30)
-@scheduler.scheduled_job('cron', hour=Config.hour_for_update, minute=Config.minute_for_update)
-def update_prices():
-    print(datetime.datetime.now())
-    conn2 = conn
-    redis_helper.update_date()
-    redis_helper.load_prices(conn2)
-    redis_helper.add_product(conn2)
-    print(table)
-    table.update(conn2)
-    conn2.close()
+# @scheduler.scheduled_job('cron', hour=Config.hour_for_update, minute=Config.minute_for_update)
+# def update_prices():
+#     print(datetime.datetime.now())
+#     conn2 = conn
+#     redis_helper.update_date()
+#     redis_helper.load_prices(conn2)
+#     redis_helper.add_product(conn2)
+#     print(table)
+#     table.update(conn2)
+#     conn2.close()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    table.update(conn)
     form = MainForm()
     if form.validate_on_submit():
         conn1 = conn
