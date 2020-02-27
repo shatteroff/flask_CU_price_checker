@@ -5,13 +5,13 @@ import redis
 
 class Table(object):
     links_list_name = 'new_link'
-    test_header = ['Intel Core i5-9600KF 6 core (Hexa Core) CPU with 3.70 GHz', 'MSI Z390-A PRO',
-                   'AMD Ryzen 5 3600 Tray', 'MSI B450-A PRO MAX', 'Ballistix Sport LT Rot 16GB DDR4 Kit (2x8GB) RAM',
-                   'Crucial Ballistix Sport LT Rot 16GB DDR4 Kit RAM', 'Ballistix Sport LT Rot 16GB DDR4 RAM',
-                   'G.Skill Ripjaws V 16GB DDR4 K2 16GVK RAM', 'G.Skill Ripjaws V 16GB DDR4 16GVK Kit RAM',
-                   'be quiet! Pure Power 11 80+ Gold 600 Watt', 'Seasonic Core GC-650 80+ Gold 650 Watt',
-                   'be quiet! Pure Power 11 80+ Gold 700 Watt', 'ADATA XPG SX8200 Pro M.2 NVME PCIe Gen3x4 512GB',
-                   'ADATA XPG SX8200 Pro M.2 NVME PCIe Gen3x4 1TB']
+    # test_header = ['Intel Core i5-9600KF 6 core (Hexa Core) CPU with 3.70 GHz', 'MSI Z390-A PRO',
+    #                'AMD Ryzen 5 3600 Tray', 'MSI B450-A PRO MAX', 'Ballistix Sport LT Rot 16GB DDR4 Kit (2x8GB) RAM',
+    #                'Crucial Ballistix Sport LT Rot 16GB DDR4 Kit RAM', 'Ballistix Sport LT Rot 16GB DDR4 RAM',
+    #                'G.Skill Ripjaws V 16GB DDR4 K2 16GVK RAM', 'G.Skill Ripjaws V 16GB DDR4 16GVK Kit RAM',
+    #                'be quiet! Pure Power 11 80+ Gold 600 Watt', 'Seasonic Core GC-650 80+ Gold 650 Watt',
+    #                'be quiet! Pure Power 11 80+ Gold 700 Watt', 'ADATA XPG SX8200 Pro M.2 NVME PCIe Gen3x4 512GB',
+    #                'ADATA XPG SX8200 Pro M.2 NVME PCIe Gen3x4 1TB']
 
     def __init__(self):
         self.headers_list = ''
@@ -72,7 +72,7 @@ class Table(object):
         return lines_dict
 
     def create_html(self):
-        print(self.headers_list)
+        # print(self.headers_list)
         header_html = ''
         lines_html = ''
         for i, header in enumerate(self.headers_list):
@@ -108,5 +108,5 @@ class Table(object):
         self.headers_list = self.create_headers_list(conn)
         self.lines_dict = self.create_lines_dict(conn)
         self.table_html = self.create_html()
-        print('Table were update')
+        # print('Table were update')
         # print(self.table_html)
