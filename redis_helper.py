@@ -68,9 +68,9 @@ class RedisHelper(object):
                 if product_.name != self.wrong_result:
                     pipe.hset(product_.category, link, product_.name)
                     pipe.hset(self.today_str, product_.name, product_.price)
+                    pipe.lrem(self.links_list_name, 0, link)
                 else:
                     print(f'There was not name tag on {link_str}')
-                pipe.lrem(self.links_list_name, 0, link)
             # pipe.bgsave()
             pipe.execute()
         # conn.bgsave()
@@ -93,7 +93,7 @@ class RedisHelper(object):
                         name = bytes(value).decode("utf-8")
                         link = bytes(field).decode("utf-8")
                         product_ = Product(link, name)
-                        if product_.price != 3.5:
+                        if product_.name != self.wrong_result:
                             today_price_dict.update({product_.name: product_.price})
                             is_robot_block = False
                         # pipe.hset(self.today_str, product_.name, product_.price)
