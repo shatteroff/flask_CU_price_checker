@@ -1,4 +1,5 @@
 import datetime
+import re
 
 import redis
 
@@ -17,12 +18,12 @@ from table import Table
 # rh.add_product()
 # rh.load_prices()
 
-print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
-date_yesterday = datetime.date.today() - datetime.timedelta(days=1)
-print(date_yesterday.strftime("%Y-%m-%d"))
-
+# print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+# date_yesterday = datetime.date.today() - datetime.timedelta(days=1)
+# print(date_yesterday.strftime("%Y-%m-%d"))
+#
 # red = RedisHelper()
-conn = redis.Redis(db=1)
+# conn = redis.Redis(db=1)
 # red.load_prices(conn)
-conn.hdel('Processors (CPUs)','https://www.computeruniverse.net/en/intel-core-i7-9700k-tray')
-conn.close()
+# conn.hdel('Processors (CPUs)','https://www.computeruniverse.net/en/intel-core-i7-9700k-tray')
+

@@ -78,9 +78,12 @@ class RedisHelper(object):
 
     def load_prices(self, conn):
         # conn = redis.Redis(db=1)
+        is_robot_block = True
         keys_list = conn.keys()
+        today_price_dict = {}
         with conn.pipeline() as pipe:
-            pipe.hset(self.today_str, self.currency_str, self.get_currency())
+            today_price_dict.update({self.currency_str: self.get_currency()})
+            # pipe.hset(self.today_str, self.currency_str, self.get_currency())
             for key in keys_list:
                 key_str = bytes(key).decode("utf-8")
                 result = re.findall(r"^\D+", key_str)
@@ -90,9 +93,15 @@ class RedisHelper(object):
                         name = bytes(value).decode("utf-8")
                         link = bytes(field).decode("utf-8")
                         product_ = Product(link, name)
-                        pipe.hset(self.today_str, product_.name, product_.price)
-            # pipe.bgsave()
-            pipe.execute()
+                        if product_.price != 3.5:
+                            today_price_dict.update({product_.name: product_.price})
+                            is_robot_block = False
+                        # pipe.hset(self.today_str, product_.name, product_.price)
+            if not is_robot_block:
+                for name, price in today_price_dict.items():
+                    pipe.hset(self.today_str, name, price)
+                # pipe.bgsave()
+                pipe.execute()
         # conn.bgsave()
         # conn.close()
 

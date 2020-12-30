@@ -41,7 +41,7 @@ def read_list(list_key):
     print(items_list)
 
 
-delete_one_key('new_link')
+# delete_one_key('new_link')
 
 check_db_keys()
 

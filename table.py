@@ -5,6 +5,7 @@ import redis
 
 class Table(object):
     links_list_name = 'new_link'
+
     # test_header = ['Intel Core i5-9600KF 6 core (Hexa Core) CPU with 3.70 GHz', 'MSI Z390-A PRO',
     #                'AMD Ryzen 5 3600 Tray', 'MSI B450-A PRO MAX', 'Ballistix Sport LT Rot 16GB DDR4 Kit (2x8GB) RAM',
     #                'Crucial Ballistix Sport LT Rot 16GB DDR4 Kit RAM', 'Ballistix Sport LT Rot 16GB DDR4 RAM',
@@ -69,6 +70,7 @@ class Table(object):
                 item_yesterday_dict = items_today_dict
                 lines_dict[key_str] = prices_list
         # conn.close()
+        lines_dict = dict(sorted(lines_dict.items(), reverse=True))
         return lines_dict
 
     def create_html(self):
